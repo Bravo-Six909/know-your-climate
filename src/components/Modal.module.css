@@ -1,0 +1,135 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    height: 550px;
+    width: 350px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background-image: url("https://i.pinimg.com/originals/84/55/bc/8455bc57cafc1049fc8eb6d40a240b0a.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3rem;
+    box-shadow: 6px 14px 19px 2px rgba(0,0,0,0.89);
+    border: none;
+    animation-name: cards;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+}
+
+.box{
+    width: 100%;
+    padding: 40px;
+    position: relative;
+}
+
+.location_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+.icon{
+    font-size: 10rem;
+    color: cyan;
+}
+
+.desc{
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 6.5rem;
+}
+
+.head{
+    display: block;
+}
+
+.dates{
+    font-size: 12px;
+}
+
+.temp_box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    bottom: 3rem;
+}
+
+.temps{
+    flex: 0.5;
+}
+
+.temp-data{
+    font-size: 20px;
+    
+    margin-top: 15px;
+    font-family: 'Shippori Antique B1', sans-serif;
+}
+
+.status{
+    flex: 0.5;
+    margin: 0px 20px;
+}
+
+.weather{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.humidity{
+    display: flex;
+    flex-direction: column;
+}
+
+.texts{
+    font-size: 1rem;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    height: 2px;
+}
+
+.wicon{
+    color: yellow;
+}
+
+.temp{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.imgs{
+    margin: 0 5px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.icons_text{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+@keyframes cards {
+    0%{
+        transform: translateY(0px);
+    }
+    25%{
+        transform: translateY(-10px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+    75%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
