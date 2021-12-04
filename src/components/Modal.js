@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ModalCSS from "./Modal.module.css";
 import { GoLocation } from "react-icons/go";
-import { location, country } from "./AddDetails";
 import { FaSun } from "react-icons/fa";
 import { BsFillCloudLightningRainFill } from "react-icons/bs";
 import { WiDayLightWind } from "react-icons/wi";
@@ -11,25 +10,28 @@ const icons = {
     fontSize: "24px",
 }
 
-let city = "bhubaneswar";
-let countryName = "india";
-
 const Modal = () => {
 
     const [data, setdata] = useState(null);
+    const [region, setRegion] = useState("Bhubaneswar");
+    const [place, setPlace] = useState(region);
 
     useEffect(() => {
-        const fetchapi = async () => {
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`);
-            const resjson = await res.json();
-            setdata(resjson);
-        }
-
-        fetchapi();
-
-    }, []);
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+        .then(response => response.json())
+        .then(datas => setdata(datas))
+        
+        .catch(err => {
+            console.log(err)
+        });
+    }, [place]);
 
     let date = new Date();
+
+    const setPlaces = (e) => {
+        e.preventDefault();
+        setPlace(region);
+    }
 
 
 
@@ -43,7 +45,7 @@ const Modal = () => {
 
                             <div className={ModalCSS.location_box}>
                                 <GoLocation style={icons} className={ModalCSS.icon} />
-                                <h5 className={ModalCSS.head}>{data.name},{data.sys.country}</h5>
+                                <h5 className={ModalCSS.head}>{place}</h5>
                             </div>
                             <h5 className={ModalCSS.dates}>{date.toDateString()}</h5>
 
@@ -61,7 +63,7 @@ const Modal = () => {
                             <h2 className={ModalCSS.desc}>{data.weather[0].description}</h2>
                             <div className={ModalCSS.temp_box}>
                                 <div className={ModalCSS.temps}>
-                                    <h2 className={ModalCSS.temp-data}>{data.main.temp}<sup>o</sup>C </h2>
+                                    <h2 className={ModalCSS.temp - data}>{data.main.temp}<sup>o</sup>C </h2>
                                 </div>
                                 <div className={ModalCSS.status}>
                                     <div className={ModalCSS.humidity}>
@@ -76,7 +78,16 @@ const Modal = () => {
                             </div>
                         </div>}
                 </div>
+                <div className={ModalCSS.Inputcard}>
+                    <form action="" onSubmit={setPlaces}>
+                        <label htmlFor="region">Enter Your Region</label>
+                        <input placeholder="Enter Your Region" type="text" value={region} onChange={(e) => setRegion(e.target.value)} />
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
+
         </>
     )
 }
